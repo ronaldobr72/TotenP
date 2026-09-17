@@ -78,7 +78,7 @@ A comunicação entre o Totem e a unidade COUTH MC 2000T² segue rigorosamente a
 ### 2.1. Visão do Posto de Gravação
 A tela principal de operação apresenta um layout dividido estrategicamente entre controles operacionais à esquerda e a prévia gráfica em tempo real à direita:
 
-![Figura 1: Posto de Gravação - COUTH MC 2000T²](assets/manual/fig1_posto_gravacao.png)
+![Figura 1: Posto de Gravação - COUTH MC 2000T²](fig1_posto_gravacao.png)
 
 1. **Seletor de Peça / Part Number:** Dropdown com busca rápida por código ou descrição da peça.
 2. **Quadro de Especificações Técnicas:** Apresenta instantaneamente todas as características cadastradas da peça (Código, Modelo, Marca/Logo, Relação de Dentes, Fábrica e Reservas).
@@ -108,7 +108,7 @@ Para peças convencionais cuja área gravada cabe perfeitamente na janela útil 
 ### 2.3. Gravação com Layout Composto (Múltiplas Etapas com Reposicionamento)
 O recurso de **Layout Composto** é utilizado quando a área de gravação da peça excede a janela mecânica do cabeçote (por exemplo, gravar a identificação no início da peça e o código DataMatrix 80 mm adiante):
 
-![Figura 1 - Detalhe Composto](assets/manual/fig1_posto_gravacao.png)
+![Figura 1 - Detalhe Composto](fig1_posto_gravacao.png)
 
 #### Como Funciona o Ciclo Guiado:
 1. Ao selecionar a peça, o sistema exibe o aviso âmbar destacado:
@@ -149,7 +149,7 @@ O recurso de **Layout Composto** é utilizado quando a área de gravação da pe
 ### 3.1. Tela de Cadastro de Produtos
 Acessível a Líderes e Administradores, a tela de **Cadastro de Produtos** reúne a listagem completa de itens fabricados, permitindo busca ágil e manutenção preventiva dos dados técnicos:
 
-![Figura 2: Cadastro de Produtos](assets/manual/fig2_cadastro_produtos.png)
+![Figura 2: Cadastro de Produtos](fig2_cadastro_produtos.png)
 
 ---
 
@@ -195,7 +195,7 @@ Na coluna **Ações** da tabela de produtos:
 ### 4.1. Barra Superior e Ações Principais
 Na aba **Layout de Gravação** da tela de Configurações, o administrador define a geometria, textos, códigos e posições dos elementos gravados:
 
-![Figura 3: Configuração do Sistema - Layout de Gravação](assets/manual/fig3_configuracao_layout.png)
+![Figura 3: Configuração do Sistema - Layout de Gravação](fig3_configuracao_layout.png)
 
 #### Funções da Barra de Botões:
 - **`+ Novo`:** Limpa a grade e o canvas para criar um layout totalmente novo a partir do zero.
@@ -274,7 +274,7 @@ Cada elemento configurado possui parâmetros numéricos precisos:
 ### 4.5. Visualizador 2D Interativo e Painel Rápido de Propriedades
 O painel direito reproduz fielmente a área útil da peça com ferramentas interativas:
 
-![Figura 3 - Visualizador 2D](assets/manual/fig3_configuracao_layout.png)
+![Figura 3 - Visualizador 2D](fig3_configuracao_layout.png)
 
 1. **Formato da Face:**
    - **`Redondo (Ø)`:** Para peças circulares (pinhões, coroas, eixos). Permite definir o Diâmetro externo e o Raio não gravável (furo central).
@@ -298,7 +298,7 @@ O painel direito reproduz fielmente a área útil da peça com ferramentas inter
 ### 5.1. Criação e Edição de Composições em Etapas
 Na aba **Composição de Gravação**, o líder ou administrador combina layouts simples em um roteiro sequencial com instruções de posicionamento mecânico:
 
-![Figura 4: Composição de Gravação](assets/manual/fig4_composicao_gravacao.png)
+![Figura 4: Composição de Gravação]fig4_composicao_gravacao.png)
 
 #### Passo a Passo para Criar uma Composição:
 1. Clique em **`+ Nova Composição`**.
@@ -316,7 +316,7 @@ Na aba **Composição de Gravação**, o líder ou administrador combina layouts
 ### 5.2. Personalização dos Nomes das Características Técnicas
 Na aba **Nome dos Campos**, o administrador adequa os termos do sistema ao vocabulário da sua empresa:
 
-![Figura 5: Personalização do Nome dos Campos](assets/manual/fig5_nomes_campos.png)
+![Figura 5: Personalização do Nome dos Campos](fig5_nomes_campos.png)
 
 - O sistema disponibiliza 10 campos genéricos (`caract_1` até `caract_10`).
 - Você pode renomeá-los livremente:
