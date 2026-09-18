@@ -1,4 +1,4 @@
-# Manual de Operação e Configuração do Sistema Totem de Gravação
+﻿# Manual de Operação e Configuração do Sistema Totem de Gravação
 ### Sistema Integrado ao Gravador Industrial por Micropuncionamento COUTH MC 2000T²
 
 ---
@@ -110,7 +110,7 @@ O recurso de **Layout Composto** é utilizado quando a área de gravação da pe
 
 ![Figura 1 - Detalhe Composto](fig1_posto_gravacao.png)
 
-O sistema oferece **dois modos de controle de pausa e continuação**, selecionados na configuração de cada composição:
+O sistema oferece **três modos de controle de ciclo e pausas mecânicas**, selecionados na configuração de cada composição:
 
 #### Modo A: Pausa e Continuação no Totem (Tela Touch)
 1. **Início da Gravação:** O sistema envia a geometria da Etapa 1 e executa a primeira marcação física.
@@ -118,13 +118,21 @@ O sistema oferece **dois modos de controle de pausa e continuação**, seleciona
 3. **Continuação:** O operador move e fixa a peça no gabarito e toca no botão verde na tela touch: **`PEÇA REPOSICIONADA — GRAVAR ETAPA 2`**.
 4. O Totem envia a Etapa 2 e conclui a marcação.
 
-#### Modo B: Pausa e Continuação no Próprio Gravador MC 2000T² (Botão Físico MARCHA)
+#### Modo B: No Gravador MC 2000T² (1ª Etapa Imediata + Botão MARCHA nas Seguintes)
 1. **Envio Consolidado:** O Totem envia todas as etapas de uma só vez à controladora COUTH MC 2000T², inserindo automaticamente a marca especial de movimento `\x1eMWSC\x1f` (Pausa de Comunicação) entre as etapas.
-2. **Pausa Mecânica Automática:** A máquina executa a Etapa 1 e entra imediatamente em **PAUSA física** (cabeçote para e o status `0x02` é sinalizado ao Totem).
-3. **Tela de Orientação no Totem:** O Totem exibe um alerta âmbar informando que a gravadora está em pausa mecânica e exibe a instrução da próxima etapa para o operador.
-4. **Retomada Rápida pelo Botão Físico:** O operador reposiciona a peça no batente físico e aperta a **tecla física MARCHA (verde)** no painel do gravador COUTH (ou a botoneira externa). A máquina retoma instantaneamente e finaliza a marcação.
-   *(Nota: O Totem também disponibiliza o botão "CONTINUAR PELO TOTEM" na tela caso o operador prefira acionar pelo display touch).*
+2. **Gravação Imediata da 1ª Etapa:** A máquina inicia a marcação da Etapa 1 assim que recebe o comando.
+3. **Pausa Mecânica Intermediária:** Ao término da Etapa 1, a máquina entra imediatamente em **PAUSA física** (cabeçote recolhe e o status `0x02` é sinalizado ao Totem). O Totem exibe alerta âmbar e instrução para reposicionamento.
+4. **Retomada pelo Botão Físico:** O operador reposiciona a peça e aperta a **tecla física MARCHA (verde)** no painel do gravador COUTH (ou botoneira externa). A máquina retoma instantaneamente e executa a Etapa 2.
+   *(Nota: O Totem também disponibiliza o botão de contingência "CONTINUAR PELO TOTEM" na tela caso o operador prefira acionar pelo display touch).*
 5. **Finalização:** Ao concluir a última etapa, a gravação é validada no banco de dados e o contador de peças é incrementado **uma única vez**.
+
+#### Modo C: No Gravador MC 2000T² (Início com Botão MARCHA em Todas as Etapas)
+Indicado para operações em que a gravadora precisa ser posicionada manualmente pelo operador sobre a peça antes de iniciar:
+1. **Envio Antecipado com Arme:** O Totem envia todas as tramas à máquina e insere o código `\x1eMWSC\x1f` no início da primeira linha e entre as etapas.
+2. **Máquina em Espera (Sem Início Imediato):** A gravação **não começa de imediato**. A máquina entra em estado de pausa inicial armada (`0x02`), permitindo que o operador posicione o cabeçote ou fixe a peça no gabarito com calma.
+3. **Início da 1ª Etapa:** O operador aciona a **tecla verde MARCHA** na gravadora para iniciar a Etapa 1.
+4. **Pausa Intermediária e Reposicionamento:** Ao finalizar a Etapa 1, a máquina pausa novamente; o operador reposiciona a gravadora/peça e aciona novamente a **tecla MARCHA** para executar a Etapa 2.
+5. **Finalização:** O ciclo conclui com segurança e o contador avança apenas após a conclusão de todas as etapas.
 
 ---
 
@@ -299,7 +307,8 @@ Na aba **Composição de Gravação**, o líder ou administrador combina layouts
 2. Digite o **Nome da Composição** (ex: `Composto1`).
 3. Selecione o **Controle de Pausa e Continuação entre Etapas**:
    - **No Totem (Tela Touch do Sistema):** O operador clica no botão verde da tela touch para liberar cada etapa subsequente.
-   - **No Gravador MC 2000T² (Botão Físico da Máquina):** A máquina envia os comandos de pausa física `\x1eMWSC\x1f`. O operador reposiciona a peça e aciona a tecla verde MARCHA (ou botoneira) diretamente no gravador industrial para retomar.
+   - **No Gravador MC 2000T² (1ª Etapa Imediata):** Envia todas as tramas de uma vez; a 1ª etapa inicia de imediato e a máquina entra em pausa mecânica com `\x1eMWSC\x1f` antes das etapas seguintes, aguardando o operador reposicionar a peça e acionar a tecla verde MARCHA (ou botoneira).
+   - **No Gravador MC 2000T² (Início com Botão MARCHA):** Envia todas as tramas e insere `\x1eMWSC\x1f` logo no início e entre as etapas. A gravação não inicia imediatamente: o operador posiciona a gravadora/peça e aperta a tecla MARCHA para a 1ª etapa, reposiciona e aperta MARCHA para a 2ª etapa, e assim por diante.
 4. Para cada etapa necessária:
    - Clique em **`+ Adicionar Etapa`**.
    - No campo **Layout da Etapa**, selecione o layout simples previamente calibrado (ex: `Etapa 1: XT22 - V2`, `Etapa 2: C60x10`).
