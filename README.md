@@ -1,4 +1,4 @@
-﻿# Manual de Operação e Configuração do Sistema Totem de Gravação
+# Manual de Operação e Configuração do Sistema Totem de Gravação
 ### Sistema Integrado ao Gravador Industrial por Micropuncionamento COUTH MC 2000T²
 
 ---
@@ -143,6 +143,31 @@ Indicado para operações em que a gravadora precisa ser posicionada manualmente
   - O botão `+` avança um número (caso uma peça tenha sido descartada).
   - O botão `-` retrocede um número.
   - O botão `Zerar` reseta a contagem para `0001` (com confirmação).
+
+---
+
+### 2.5. Modo Esteira e Gravação Contínua em Loop (Operação Automática Sequencial)
+Para linhas de produção seriada com alimentação contínua de peças (por esteira transportadora, manipulador ou operador dedicado), o Totem disponibiliza o **Modo Esteira (Loop Contínuo)**:
+
+1. **Ativação:**
+   - No painel direito do Posto de Gravação (logo acima do botão principal), ative o interruptor **"Modo Esteira (Loop Contínuo)"**.
+   - O botão principal de ação muda automaticamente de verde para âmbar com o ícone de infinito e o rótulo **`INICIAR MODO ESTEIRA`**.
+
+2. **Início do Ciclo Automático:**
+   - Ao tocar em **`INICIAR MODO ESTEIRA`**, o Totem inicia a gravação da primeira peça imediatamente.
+   - O botão principal passa a exibir um botão de parada em vermelho vivo: **`PARAR MODO ESTEIRA`**.
+   - Os seletores de peça e layout são temporariamente bloqueados para evitar alterações acidentais durante a operação contínua.
+
+3. **Ciclo de Gravação e Auto-Incremento Dinâmico:**
+   - O Totem envia as tramas à gravadora COUTH MC 2000T² e aguarda a conclusão mecânica física do ciclo.
+   - Ao confirmar o sucesso do ciclo, o software **incrementa automaticamente o contador de peças no banco de dados**, atualiza a prévia visual e recalcula o novo payload (incluindo o novo número sequencial no texto e no código DataMatrix da próxima peça).
+   - O sistema inicia uma contagem regressiva visual suave com barra de progresso correspondente ao **tempo de espera configurado para a esteira** (padrão: 2,0 segundos).
+   - Ao zerar a contagem, o Totem dispara automaticamente a gravação para a próxima peça que acabou de chegar na estação de trabalho da esteira.
+
+4. **Interrupção e Segurança Operacional:**
+   - **Parada Normal pelo Operador:** O operador pode tocar no botão vermelho **`PARAR MODO ESTEIRA`** ou desativar o interruptor a qualquer momento. O Totem conclui a peça atual em andamento e interrompe o ciclo em segurança, exibindo o total de peças produzidas no lote.
+   - **Interrupção Imediata por Falha:** Caso a máquina acuse qualquer código de erro físico (ex: timeout de comunicação, obstrução mecânica ou peça fora do gabarito), o modo contínuo é **interrompido instantaneamente**, disparando o alerta sonoro/visual e a tela modal de diagnóstico de falha para segurança da linha.
+   - **Compatibilidade:** O Modo Esteira opera tanto com peças de layout simples quanto com peças de layout composto (gravação unificada em múltiplas etapas).
 
 ---
 
@@ -333,6 +358,13 @@ Na aba **Nome dos Campos**, o administrador adequa os termos do sistema ao vocab
   - `Campo 5`: `Relação de Dentes`
   - `Campo 6 a 10`: `Reserva 1` até `Reserva 5`
 - Ao clicar em **`Salvar Nomes`**, os novos rótulos são aplicados imediatamente em todas as telas (Cadastro de Peças, Posto de Gravação e relatórios de auditoria) e protegidos no arquivo de configuração local.
+
+---
+
+### 5.3. Configuração de Comunicação e Tempo de Espera da Esteira
+Na aba **Comunicação** das Configurações:
+- **Porta Serial / Baudrate / IP / Porta TCP:** Parâmetros físicos de conexão com o controlador COUTH.
+- **Espera Esteira (segundos):** Define o intervalo de transição (em segundos, ex: `2.0s` ou `3.5s`) entre a conclusão de uma peça e o início do próximo ciclo no **Modo Esteira**. Esse tempo deve ser calibrado de acordo com a velocidade de transporte da linha da fábrica para garantir que a nova peça esteja devidamente posicionada no gabarito antes do disparo do cabeçote. O valor é mantido de forma segura no arquivo de configuração local da máquina (`local_config.json`).
 
 ---
 
