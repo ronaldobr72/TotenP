@@ -134,6 +134,9 @@ Indicado para operações em que a gravadora precisa ser posicionada manualmente
 4. **Pausa Intermediária e Reposicionamento:** Ao finalizar a Etapa 1, a máquina pausa novamente; o operador reposiciona a gravadora/peça e aciona novamente a **tecla MARCHA** para executar a Etapa 2.
 5. **Finalização:** O ciclo conclui com segurança e o contador avança apenas após a conclusão de todas as etapas.
 
+> [!TIP]
+> **Disparo Direto para os Modos no Gravador MC 2000T²:** Quando a composição utiliza o controle físico pela máquina (Modos B e C), ao clicar em **"GRAVAR PEÇA"**, o Totem **transmite as tramas diretamente ao gravador** sem exibir telas intermediárias de confirmação. A tela prévia *"Iniciar Gravação em Etapas"* é exibida exclusivamente quando o controle do ciclo está configurado para o **Totem (Modo A)**.
+
 ---
 
 ### 2.4. Entradas Manuais e Contador Sequencial de Peças
